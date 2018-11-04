@@ -1,0 +1,13 @@
+<p>
+    <strong>작성자:</strong>
+    <%= comment.commenter %>
+</p>
+
+<p>
+    <strong>댓글 내용:</strong>
+    <%= comment.body %>
+</p>
+
+<p>
+    <%= link_to '삭제', [comment.article, comment], method: :delete, data: { confirm: '정말로 삭제하시곘습니까?' } %>
+</p>

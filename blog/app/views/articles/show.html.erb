@@ -1,0 +1,18 @@
+<p>
+  <strong>제목:</strong>
+  <%= @article.title %>
+</p>
+ 
+<p>
+  <strong>내용:</strong>
+  <%= render :inline => @article.text %>
+</p>
+
+<h2>댓글</h2>
+<%= render @article.comments %>
+
+<h2>댓글 달기:</h2>
+<%= render 'comments/form' %>
+
+<%= link_to '편집', edit_article_path(@article) %> |
+<%= link_to '뒤로', articles_path %>

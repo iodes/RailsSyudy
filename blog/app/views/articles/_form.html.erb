@@ -1,0 +1,45 @@
+<script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<%= form_with model: @article, id: 'articleForm', local: true do |form| %>
+    <% if @article.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+            <h2>
+                <%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:
+            </h2>
+            <ul>
+                <% @article.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <p>
+        <%= form.text_field :title, :class => 'form-control', :placeholder => '게시물 제목' %>
+    </p>
+    
+    <p>
+        <%= form.text_area :text, :rows => 25, style: 'width:100%;' %>
+    </p>
+
+    <p style="text-align: right;">
+        <%= link_to '취소', articles_path, :class => 'btn btn-danger' %>
+        <%= form.submit '등록', :class => 'btn btn-success' %>
+    </p>
+<% end %>
+
+<script type="text/javascript">
+    var oEditors = [];
+
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "article_text",
+        sSkinURI: "../se2/SmartEditor2Skin.html",
+        fCreator: "createSEditor2"
+    });
+
+    document.getElementById('articleForm').addEventListener("submit", function() {
+        oEditors.getById["article_text"].exec("UPDATE_CONTENTS_FIELD", []);
+    }, false);
+</script>
