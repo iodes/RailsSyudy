@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
 
     def index
         # 데이터베이스에서 글 모든 모델 읽기
-        @articles = Article.all
+        @articles = Article.order('created_at desc')
     end
 
     def create
