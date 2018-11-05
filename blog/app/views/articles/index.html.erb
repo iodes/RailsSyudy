@@ -14,10 +14,15 @@
 </style>
 
 <div class="center">
-    <h3 id="title">
-        블로그 전체 글
-        <small class="text-muted">블로그에 작성된 모든 글입니다.</small>
-    </h3>
+    <div>
+        <p style="float:right;">
+            <%= link_to '새로운 글쓰기', new_article_path, style: 'display:inline;', :class => 'btn btn-outline-primary' %>
+        </p>
+        <h3 id="title">
+            블로그 전체 글
+            <small class="text-muted">블로그에 작성된 모든 글입니다.</small>
+        </h3>
+    </div>
 
     <% @articles.each do |article| %>
         <div class="card border-info mb-3">
@@ -34,10 +39,6 @@
             </div>
         </div>
     <% end %>
-    
-    <p style="text-align: right;">
-        <%= link_to '새로운 글쓰기', new_article_path, :class => 'btn btn-outline-primary' %>
-    </p>
 </div>
 
 <p style="font-size:14px; text-align: center;">
